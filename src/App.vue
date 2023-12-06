@@ -1,4 +1,5 @@
 <template>
+  <header-app />
   <div class="wrapper">
     <p>{{ $store.getters['user/fullName']}}</p>
     <div v-for="hotel in hotels" :key="hotel.abbreviation">
@@ -9,16 +10,21 @@
       <hotel-card :hotel="hotel" @click="$store.dispatch('hotel/removeToFavorites',hotel)"/>
     </div>
   </div>
+  <footer-app />
 </template>
 
 <script>
+import HeaderApp from './components/HeaderApp.vue'
+import FooterApp from './components/FooterApp.vue'
 import { ref } from 'vue'
 import allHotels from '@/data/hotels.js'
 import HotelCard from '@/components/HotelCard.vue'
 
 export default {
   components: {
-    HotelCard
+    HeaderApp,
+    HotelCard,
+    FooterApp
   },
   setup () {
     const hotels = ref(allHotels)
